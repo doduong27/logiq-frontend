@@ -53,3 +53,24 @@ export interface LogStats {
   error_count: number;
   error_rate: number;
 }
+
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  sources?: Array<{
+    document: string;
+    relevance_score: number;
+  }>;
+  timestamp: string;
+}
+
+export interface OrangePiDevice {
+  device_id: string;
+  soc_temperature_c: number;
+  memory_used_pct: number;
+  load_1m: number;
+  disk_used_pct: number;
+  status: 'HEALTHY' | 'WARNING' | 'CRITICAL';
+  last_seen: string;
+}

@@ -62,4 +62,19 @@ export const apiService = {
     const res = await apiClient.patch(`/incidents/${incidentId}`, { status });
     return res.data;
   },
+
+  triggerIncidentRCA: async (incidentId: number): Promise<Incident> => {
+    const res = await apiClient.post(`/incidents/${incidentId}/analyze`);
+    return res.data;
+  },
+
+  // AI Log Q&A Chatbot
+  askChatbot: async (projectId: number, query: string, topK = 5) => {
+    const res = await apiClient.post('/chat/', {
+      project_id: projectId,
+      query,
+      top_k: topK,
+    });
+    return res.data;
+  },
 };
